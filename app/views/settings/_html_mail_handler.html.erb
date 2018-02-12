@@ -1,0 +1,12 @@
+<p>
+  <%= label 'settings[unwanted_nodes]', l(:unwanted_nodes, scope: :html_mail_handler) %>
+  <%= text_area_tag 'settings[unwanted_nodes]', @settings[:unwanted_nodes], rows: 20 %>
+  <%= content_tag :em, l(:unwanted_nodes_info, scope: :html_mail_handler), class: 'info' %>
+</p>
+
+<p>
+  <%= label 'settings[enable_log]', l(:enable_log, scope: :html_mail_handler) %>
+  <%= hidden_field_tag('settings[enable_log]', false) %>
+  <%= check_box_tag('settings[enable_log]', true, @settings['enable_log'] == 'true') %>
+  <%= content_tag :em, l(:enable_log_info, scope: :html_mail_handler), class: 'info' %>
+</p>

@@ -1,0 +1,7 @@
+# English strings go here for Rails i18n
+en:
+  html_mail_handler:
+    unwanted_nodes: 'Remove nodes (xpath/css syntax) from emails'
+    unwanted_nodes_info: Multiple values allowed (one line for each value)
+    enable_log: 'enable log'
+    enable_log_info: 'check to enable log in log/html_mail_handler.log'

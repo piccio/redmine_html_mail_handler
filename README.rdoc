@@ -1,0 +1,4 @@
+= redmine_html_mail_handler
+
+redmine version: 2.6.0
+ckeditor plugin version: 1.0.16
