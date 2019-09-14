@@ -24,7 +24,18 @@ module RedmineHtmlMailHandler
       @attributes_regexps << /(<{1}[^<\/>]+>{1}\s*){,1}\s*(#{keys.join('|')})\s*(<{1}\/{1}[^<>]+>{1}\s*)*\s*(<{1}[^<>]+>{1}\s*)*\s*(:)\s*(<{1}\/{1}[^<>]+>{1}\s*)*\s*(<{1}[^<>]+>{1}\s*)*\s*(#{keyword})\s*(<{1}\/{1}[^<>]+>{1}\s*){,1}/i
     end
 
-    def cleaned_up_text_body
+    # ERROR: wrong number of arguments (given 1, expected 0)
+    # /home/sts_beta/redmine/plugins/redmine_html_mail_handler/lib/redmine_html_mail_handler/mail_handler_patch.rb:27:in `cleaned_up_text_body'
+    # /home/sts_beta/redmine/plugins/redmine_ckeditor/lib/redmine_ckeditor/mail_handler_patch.rb:14:in `extract_keyword!'
+    # /home/sts_beta/redmine/plugins/redmine_html_mail_handler/lib/redmine_html_mail_handler/mail_handler_patch.rb:46:in `extract_keyword!'
+    # /home/sts_beta/redmine/app/models/mail_handler.rb:352:in `get_keyword'
+    # the 'super' in the 'extract_keyword!' method above calls the 'extract_keyword!' method in ckeditor that, in turn,
+    # calls my 'cleaned_up_text_body' method
+    # https://github.com/a-ono/redmine_ckeditor/blob/810bd4212ed41be59d6219b759525127f5cd0bfb/lib/redmine_ckeditor/mail_handler_patch.rb#L14
+    # unfortunately ckeditor overrides the 'cleaned_up_text_body' signature
+    # https://github.com/a-ono/redmine_ckeditor/blob/810bd4212ed41be59d6219b759525127f5cd0bfb/lib/redmine_ckeditor/mail_handler_patch.rb#L5
+    # then I have to follow its (bad) behaviour
+    def cleaned_up_text_body(format = false)
       # http://stackoverflow.com/a/15098459
       caller =  caller_locations(1,1)[0].label
       if caller == 'receive_issue' || caller == 'receive_issue_reply'

@@ -15,7 +15,7 @@ Redmine::Plugin.register :redmine_html_mail_handler do
   name 'Redmine Html Mail Handler plugin'
   author 'Roberto Piccini'
   description 'accept HTML email (requires ckeditor plugin)'
-  version '2.0.0'
+  version '3.0.0'
   url 'https://github.com/piccio/redmine_html_mail_handler'
   author_url 'https://github.com/piccio'
 
